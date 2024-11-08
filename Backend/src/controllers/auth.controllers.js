@@ -35,14 +35,7 @@ export const login = async (req, res, next) => {
       }
     );
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: NODE_ENV === "production",
-      maxAge: 60 * 60 * 1000,
-      sameSite: "strict",
-    });
-
-    res.json({ message: "Autenticación exitosa" });
+    res.json({ token, message: "Autenticación exitosa" })
   } catch (error) {
     console.error("Error en login:", error);
     next(error);
