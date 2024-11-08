@@ -4,8 +4,8 @@ import { verifyToken, verifyRoles } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get('', getEdificios)
-router.get('/:id_edificio', getEdificioById);
+router.get('', verifyToken, getEdificios)
+router.get('/:id_edificio', verifyToken, getEdificioById);
 router.post('', verifyToken, verifyRoles(['administrador']), postEdificio)
 router.put('/:id_edificio', verifyToken, verifyRoles(['administrador']), putEdificio)
 router.delete('/:id_edificio', verifyToken, verifyRoles(['administrador']), deleteEdificio)

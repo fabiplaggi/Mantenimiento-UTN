@@ -4,8 +4,8 @@ import { verifyToken, verifyRoles } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get('', getPisosNiveles)
-router.get('/:id_piso_nivel', getPisoNivelById);
+router.get('', verifyToken, getPisosNiveles)
+router.get('/:id_piso_nivel', verifyToken, getPisoNivelById);
 router.post('', verifyToken, verifyRoles(['administrador']), postPisoNivel)
 router.put('/:id_piso_nivel', verifyToken, verifyRoles(['administrador']), putPisoNivel)
 router.delete('/:id_piso_nivel', verifyToken, verifyRoles(['administrador']), deletePisoNivel)

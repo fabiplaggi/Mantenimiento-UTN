@@ -71,7 +71,7 @@ export const deleteUbicacion = async (req, res, next) => {
     const { id_ubicacion } = req.params;
 
     try {
-        const affectedRows = await deleteUbicacion(id_ubicacion);
+        const affectedRows = await deleteUbicacionById(id_ubicacion);
         if (affectedRows > 0) {
             res.json({ message: 'Ubicación eliminada exitosamente' });
         } else {

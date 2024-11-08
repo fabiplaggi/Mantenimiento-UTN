@@ -2,9 +2,11 @@ import bcrypt from 'bcrypt';
 import { pool } from '../database/connection.database.js';
 
 const users = [
-    { username: 'FabiánPlaggi', password: 'fabian' },
-    { username: 'EzequielMiño', password: 'ezequiel' },
-    { username: 'DariénValla', password: 'darien' }
+    { username: 'Fabián Plaggi', password: 'fabian' },
+    { username: 'Ezequiel Miño', password: 'ezequiel' },
+    { username: 'Darién Valla', password: 'darien' },
+    { username: 'Trabajador1', password: 'trabajador1' },
+    { username: 'Trabajador2', password: 'trabajador2' }
 ];
 
 const updatePasswords = async () => {

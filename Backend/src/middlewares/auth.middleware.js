@@ -1,7 +1,11 @@
 import jwt from 'jsonwebtoken';
 import 'dotenv/config.js'
-import { JWT_SECRET } from '../../config/config.js';
+import { JWT_SECRET } from '../../config/config.js'
 
+/**
+ * verifyToken: Verifica si el token JWT es válido y si no ha expirado. Este middleware 
+ * asegurará que ciertas rutas del backend solo sean accesibles si el usuario está autenticado.
+ */
 export const verifyToken = (req, res, next) => {
     try {
         // Obtener el token desde las cookies
@@ -11,7 +15,6 @@ export const verifyToken = (req, res, next) => {
             return res.status(403).json({ message: 'No se proporcionó token' });
         }
 
-        // Validación y decodificación del token
         jwt.verify(token, JWT_SECRET, (err, decoded) => {
             if (err) {
                 return res.status(403).json({ message: 'Token inválido' });
@@ -25,7 +28,7 @@ export const verifyToken = (req, res, next) => {
             }
 
             req.user = decoded; // Almacenar los datos del usuario decodificados
-            next(); // Continuar con el siguiente middleware
+            next();
         });
     } catch (error) {
         console.error('Error verifyToken middleware:', error);
@@ -33,10 +36,11 @@ export const verifyToken = (req, res, next) => {
     }
 };
 
+//verifyRoles: Verifica el rol del usuario para controlar el acceso a rutas específicas.
 export const verifyRoles = (roles) => {
     return (req, res, next) => {
         try {
-            if (!req.user || !roles.includes(req.user.role)) {
+            if (!req.user || !roles.includes(req.user.rol)) {
                 return res.status(403).json({ message: 'No tienes el rol de administrador para realizar esta acción' });
             }
             next();
