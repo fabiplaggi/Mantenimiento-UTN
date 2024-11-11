@@ -10,6 +10,11 @@ export const findUbicacionById = async (id_ubicacion) => {
     return rows[0];
 };
 
+export const findUbicacionByName = async (nombre) => {
+    const [rows] = await pool.query('SELECT * FROM ubicacion WHERE nombre = ?', [nombre]);
+    return rows[0];
+};
+
 export const createUbicacion = async (nombre) => {
     const [result] = await pool.query('INSERT INTO ubicacion (nombre) VALUES (?)', [nombre]);
     return result.insertId; // Devuelve el ID del nuevo activo

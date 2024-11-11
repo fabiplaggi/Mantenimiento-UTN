@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   getUbicaciones,
   getUbicacionById,
+  getUbicacionByName,
   postUbicacion,
   putUbicacion,
   deleteUbicacion,
@@ -12,6 +13,7 @@ const router = Router();
 
 router.get("", verifyToken, getUbicaciones);
 router.get("/:id_ubicacion", verifyToken, getUbicacionById);
+router.get('/nombre/:nombre', verifyToken, getUbicacionByName);
 router.post("", verifyToken, verifyRoles(["administrador"]), postUbicacion);
 router.put(
   "/:id_ubicacion",

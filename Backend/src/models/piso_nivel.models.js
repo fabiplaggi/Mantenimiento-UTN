@@ -10,6 +10,11 @@ export const findPisoNivelById = async (id_piso_nivel) => {
     return rows[0];
 };
 
+export const findPisoNivelByName = async (nombre) => {
+    const [rows] = await pool.query('SELECT * FROM piso_nivel WHERE nombre = ?', [nombre]);
+    return rows[0];
+};
+
 export const createPisoNivel = async (nombre) => {
     const [result] = await pool.query('INSERT INTO piso_nivel (nombre) VALUES (?)', [nombre]);
     return result.insertId; // Devuelve el ID del nuevo activo

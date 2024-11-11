@@ -1,4 +1,11 @@
-import { getAllSectores, findSectorById, createSector, updateSectorById, deleteSectorById } from "../models/sector.models.js";
+import {
+    getAllSectores,
+    findSectorById,
+    findSectorByName,
+    createSector,
+    updateSectorById,
+    deleteSectorById
+} from "../models/sector.models.js";
 
 export const getSectores = async (req, res, next) => {
     try {
@@ -23,6 +30,23 @@ export const getSectorById = async (req, res, next) => {
         res.json(sector);
     } catch (error) {
         console.error('Error al obtener el sector por ID:', error);
+        next(error);
+    }
+};
+
+export const getSectorByName = async (req, res, next) => {
+    const { nombre } = req.params;
+
+    try {
+        const sector = await findSectorByName(nombre);
+
+        if (!sector) {
+            return next({ statusCode: 404, message: 'Sector no encontrado' });
+        }
+
+        res.json(sector);
+    } catch (error) {
+        console.error('Error al obtener el sector por nombre:', error);
         next(error);
     }
 };

@@ -1,4 +1,11 @@
-import { getAllActivos, findActivoById, createActivo, updateActivoById, deleteActivoById } from "../models/activo.model.js";
+import {
+  getAllActivos,
+  findActivoById,
+  findActivoByNombre,
+  createActivo,
+  updateActivoById,
+  deleteActivoById
+} from "../models/activo.model.js";
 
 export const getActivos = async (req, res, next) => {
   try {
@@ -25,6 +32,23 @@ export const getActivoById = async (req, res, next) => {
     res.json(activo);
   } catch (error) {
     console.error('Error al obtener el activo por ID:', error);
+    next(error);
+  }
+};
+
+export const getActivoByNombre = async (req, res, next) => {
+  const { nombre } = req.params;
+
+  try {
+    const activo = await findActivoByNombre(nombre);
+
+    if (!activo) {
+      return next({ statusCode: 404, message: 'Activo no encontrado' });
+    }
+
+    res.json(activo);
+  } catch (error) {
+    console.error('Error al obtener el activo por nombre:', error);
     next(error);
   }
 };

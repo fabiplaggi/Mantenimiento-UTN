@@ -1,4 +1,11 @@
-import { getAllTareas, findTareaById, createTarea, updateTareaById, deleteTareaById } from "../models/tarea.models.js";
+import {
+    getAllTareas,
+    findTareaById,
+    findTareaByDescripcion,
+    createTarea,
+    updateTareaById,
+    deleteTareaById
+} from "../models/tarea.models.js";
 
 export const getTareas = async (req, res, next) => {
     try {
@@ -23,6 +30,23 @@ export const getTareaById = async (req, res, next) => {
         res.json(tarea);
     } catch (error) {
         console.error('Error al obtener la tarea por ID:', error);
+        next(error);
+    }
+};
+
+export const getTareaByDescripcion = async (req, res, next) => {
+    const { descripcion } = req.query;
+
+    try {
+        const tarea = await findTareaByDescripcion(descripcion);
+
+        if (!tarea) {
+            return next({ statusCode: 404, message: 'No se encontraron tareas con esa descripción' });
+        }
+
+        res.json(tarea);
+    } catch (error) {
+        console.error('Error al buscar la tarea por descripción:', error);
         next(error);
     }
 };

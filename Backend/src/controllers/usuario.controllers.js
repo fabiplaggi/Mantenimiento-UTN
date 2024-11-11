@@ -1,5 +1,12 @@
 import bcrypt from 'bcrypt'
-import { getAllUsuarios, createUsuario, updateUsuarioById, findUsuarioById, deleteUsuarioById } from '../models/usuario.model.js';
+import {
+  getAllUsuarios,
+  createUsuario,
+  updateUsuarioById,
+  findUserByUsername,
+  findUsuarioById,
+  deleteUsuarioById
+} from '../models/usuario.model.js';
 
 export const getUsuarios = async (req, res, next) => {
   try {
@@ -11,6 +18,21 @@ export const getUsuarios = async (req, res, next) => {
   }
 };
 
+export const getUsuarioByUsename = async (req, res, next) => {
+  const { username } = req.params
+
+  try {
+    const usuario = await findUserByUsername(username)
+
+    if (!usuario) {
+      return next({ statusCode: 404, message: 'Usuario no encontrado' });
+    }
+    res.json(usuario)
+  } catch (error) {
+    console.error('Error al obtener el usuario por username:', error);
+    next(error);
+  }
+}
 export const getUsuarioById = async (req, res, next) => {
   const { id_usuario } = req.params;
 

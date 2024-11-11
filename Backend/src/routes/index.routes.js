@@ -7,9 +7,11 @@
     import tareaRoutes from './tarea.routes.js'
     import ubicacionRoutes from './ubicacion.routes.js'
     import activoTareaRoutes from './activo_tarea.routes.js'
-    import activoCodigoRoutes from './activo_codigo.routes.js'
+    import activoDetalleRoutes from './activo_detalle.routes.js'
     import ordenTrabajoRoutes from './orden_trabajo.routes.js'
     import ordenTrabajoTareaRoutes from './orden_trabajo_tarea.routes.js'
+    import activoCompletoRoutes from './activoCompleto.routes.js'
+    import codigoRoutes from './codigo.routes.js'
 
     const setupRoutes = (app) => {
         app.use('/api/auth', authRoutes)
@@ -21,9 +23,11 @@
         app.use('/api/tareas', tareaRoutes)
         app.use('/api/ubicaciones', ubicacionRoutes)
         app.use('/api/activo-tareas', activoTareaRoutes)
-        app.use('/api/activo-codigos', activoCodigoRoutes)
+        app.use('/api/activo-detalles', activoDetalleRoutes)
         app.use('/api/ordenes-trabajo', ordenTrabajoRoutes)
         app.use('/api/orden-trabajo-tareas', ordenTrabajoTareaRoutes)
+        app.use('/api/activoCompleto', activoCompletoRoutes)
+        app.use('/api/codigos', codigoRoutes)
     }
 
     export default setupRoutes

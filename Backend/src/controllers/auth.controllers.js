@@ -52,7 +52,6 @@ export const logout = (req, res) => {
 /**
  * register: Crea un nuevo usuario en la base de datos y retorna un token JWT en las cookies 
  * para autenticación.
- */
 export const register = async (req, res, next) => {
   const { username, rol, password } = req.body;
 
@@ -94,3 +93,4 @@ export const register = async (req, res, next) => {
     next(error);
   }
 };
+ */

@@ -10,6 +10,11 @@ export const findEdificioById = async (id_edificio) => {
     return rows[0];
 };
 
+export const findEdificioByName = async (nombre) => {
+    const [rows] = await pool.query('SELECT * FROM edificio WHERE nombre = ?', [nombre]);
+    return rows[0];
+};
+
 export const createEdificio = async (nombre) => {
     const [result] = await pool.query('INSERT INTO edificio (nombre) VALUES (?)', [nombre]);
     return result.insertId; // Devuelve el ID del nuevo activo

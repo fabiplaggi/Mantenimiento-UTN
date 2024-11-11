@@ -10,6 +10,11 @@ export const findActivoById = async (id_activo) => {
     return rows[0];
 };
 
+export const findActivoByNombre = async (nombre) => {
+    const [rows] = await pool.query('SELECT * FROM activo WHERE nombre = ?', [nombre]);
+    return rows[0];
+};
+
 export const createActivo = async (nombre) => {
     const [result] = await pool.query('INSERT INTO activo (nombre) VALUES (?)', [nombre]);
     return result.insertId; // Devuelve el ID del nuevo activo

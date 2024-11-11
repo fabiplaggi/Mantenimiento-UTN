@@ -10,6 +10,11 @@ export const findTareaById = async (id_tarea) => {
     return rows[0];
 };
 
+export const findTareaByDescripcion = async (descripcion) => {
+    const [rows] = await pool.query('SELECT * FROM tarea WHERE descripcion = ?', [descripcion])
+    return rows[0]
+  }
+
 export const createTarea = async (descripcion) => {
     const [result] = await pool.query('INSERT INTO tarea (descripcion) VALUES (?)', [descripcion]);
     return result.insertId; // Devuelve el ID del nuevo activo

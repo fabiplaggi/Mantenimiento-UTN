@@ -9,7 +9,7 @@ import { JWT_SECRET } from '../../config/config.js'
 export const verifyToken = (req, res, next) => {
     try {
         // Obtener el token desde las cookies
-        const token = req.cookies.token;
+        const token = req.headers['authorization']?.split(' ')[1];
 
         if (!token) {
             return res.status(403).json({ message: 'No se proporcionó token' });

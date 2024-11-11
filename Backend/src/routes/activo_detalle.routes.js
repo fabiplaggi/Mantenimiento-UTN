@@ -1,17 +1,17 @@
 import { Router } from "express";
 import {
-  listarCodigos,
+  listarActivoDetalles,
   asignarCodigo,
   actualizarCodigo,
-  buscarCodigoPorActivo,
-} from "../controllers/activo_codigo.controllers.js";
+  buscarActivoDetallePorCodigo,
+} from "../controllers/activo_detalle.controllers.js";
 import { verifyToken, verifyRoles } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get("/", verifyToken, listarCodigos);
+router.get("/", listarActivoDetalles);
 
-router.get("/:id_activo", verifyToken, buscarCodigoPorActivo);
+router.get("/:id_codigo", buscarActivoDetallePorCodigo);
 
 router.post("/", verifyToken, verifyRoles(["administrador"]), asignarCodigo);
 

@@ -1,4 +1,11 @@
-import { getAllPisosNiveles, findPisoNivelById, createPisoNivel, updatePisoNivelById, deletePisoNivelById } from "../models/piso_nivel.models.js";
+import {
+    getAllPisosNiveles, 
+    findPisoNivelById,
+    findPisoNivelByName,
+    createPisoNivel,
+    updatePisoNivelById,
+    deletePisoNivelById
+} from "../models/piso_nivel.models.js";
 
 export const getPisosNiveles = async (req, res, next) => {
     try {
@@ -23,6 +30,22 @@ export const getPisoNivelById = async (req, res, next) => {
         res.json(pisoNivel);
     } catch (error) {
         console.error('Error al obtener el piso/nivel por ID:', error);
+        next(error);
+    }
+};
+
+export const getPisoNivelByName = async (req, res, next) => {
+    const { nombre } = req.params;
+
+    try {
+        const pisoNivel = await findPisoNivelByName(nombre);
+        if (!pisoNivel) {
+            return next({ statusCode: 404, message: 'Piso/Nivel no encontrado' });
+        }
+
+        res.json(pisoNivel);
+    } catch (error) {
+        console.error('Error al obtener el piso/nivel por nombre:', error);
         next(error);
     }
 };

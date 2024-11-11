@@ -21,6 +21,11 @@ export const updateUsuarioById = async (id_usuario, username, rol, password) => 
   return result.affectedRows;
 };
 
+export const findUserByUsername = async (username) => {
+  const [rows] = await pool.query('SELECT * FROM usuario WHERE username = ?', [username])
+  return rows[0]
+}
+
 export const findUsuarioById = async (id_usuario) => {
   const [rows] = await pool.query('SELECT * FROM usuario WHERE id_usuario = ?', [id_usuario]);
   return rows[0];

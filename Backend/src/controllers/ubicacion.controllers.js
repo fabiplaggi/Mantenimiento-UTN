@@ -1,4 +1,11 @@
-import { getAllUbicaciones, findUbicacionById, createUbicacion, updateUbicacionById, deleteUbicacionById } from "../models/ubicacion.models.js";
+import {
+    getAllUbicaciones,
+    findUbicacionById,
+    findUbicacionByName,
+    createUbicacion,
+    updateUbicacionById,
+    deleteUbicacionById
+} from "../models/ubicacion.models.js";
 
 export const getUbicaciones = async (req, res, next) => {
     try {
@@ -23,6 +30,23 @@ export const getUbicacionById = async (req, res, next) => {
         res.json(ubicacion);
     } catch (error) {
         console.error('Error al obtener la ubicacion por ID:', error);
+        next(error);
+    }
+};
+
+export const getUbicacionByName = async (req, res, next) => {
+    const { nombre } = req.params;
+
+    try {
+        const ubicacion = await findUbicacionByName(nombre);
+
+        if (!ubicacion) {
+            return next({ statusCode: 404, message: 'Ubicación no encontrada' });
+        }
+
+        res.json(ubicacion);
+    } catch (error) {
+        console.error('Error al obtener la ubicación por nombre:', error);
         next(error);
     }
 };

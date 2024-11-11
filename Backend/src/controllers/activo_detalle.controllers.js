@@ -1,10 +1,29 @@
 import {
-  getAllCodigos,
+  getAllActivoDetalle,
   assignCodigoToActivo,
   updateCodigoById,
-  getCodigoByActivoId,
-} from "../models/activo_codigo.models.js";
+  getActivoDetalleByCodigoId
+} from "../models/activo_detalle.models.js";
 
+export const listarActivoDetalles = async (req, res) => {
+  try {
+    const detalles = await getAllActivoDetalle();
+    const formattedDetalles = detalles.map(detalle => ({
+      id_activo_detalle: detalle.id_activo_detalle,
+      id_edificio: detalle.id_edificio,
+      id_piso_nivel: detalle.id_piso_nivel,
+      id_sector: detalle.id_sector,
+      id_activo: detalle.id_activo,
+      id_ubicacion: detalle.id_ubicacion,
+      id_codigo: detalle.id_codigo
+    }));
+    res.status(200).json(formattedDetalles);
+  } catch (error) {
+    res.status(500).json({ message: "Error al obtener códigos de activos", error });
+  }
+};
+
+/*
 export const listarCodigos = async (req, res) => {
   try {
     const codigos = await getAllCodigos();
@@ -15,17 +34,19 @@ export const listarCodigos = async (req, res) => {
       .json({ message: "Error al obtener códigos de activos", error });
   }
 };
+ */
+ 
 
-export const buscarCodigoPorActivo = async (req, res) => {
-  const { id_activo } = req.params;
+export const buscarActivoDetallePorCodigo = async (req, res) => {
+  const { id_codigo } = req.params;
   try {
-    const codigos = await getCodigoByActivoId(id_activo);
-    if (codigos.length === 0) {
+    const detalles = await getActivoDetalleByCodigoId(id_codigo);
+    if (detalles.length === 0) {
       return res
         .status(404)
         .json({ message: "No se encontró código para el activo especificado" });
     }
-    res.status(200).json(codigos);
+    res.status(200).json(detalles);
   } catch (error) {
     res
       .status(500)

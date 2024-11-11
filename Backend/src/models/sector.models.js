@@ -10,6 +10,11 @@ export const findSectorById = async (id_sector) => {
     return rows[0];
 };
 
+export const findSectorByName = async (nombre) => {
+    const [rows] = await pool.query('SELECT * FROM sector WHERE nombre = ?', [nombre]);
+    return rows[0];
+};
+
 export const createSector = async (nombre) => {
     const [result] = await pool.query('INSERT INTO sector (nombre) VALUES (?)', [nombre]);
     return result.insertId; // Devuelve el ID del nuevo activo

@@ -1,4 +1,11 @@
-import { getAllEdificios, findEdificioById, createEdificio, updateEdificioById, deleteEdificioById } from "../models/edificio.model.js";
+import {
+    getAllEdificios,
+    findEdificioById,
+    findEdificioByName,
+    createEdificio,
+    updateEdificioById,
+    deleteEdificioById
+} from "../models/edificio.model.js";
 
 export const getEdificios = async (req, res, next) => {
     try {
@@ -26,6 +33,24 @@ export const getEdificioById = async (req, res, next) => {
         next(error);
     }
 };
+
+export const getEdificioByName = async (req, res, next) => {
+    const { nombre } = req.params;
+
+    try {
+        const edificio = await findEdificioByName(nombre);
+
+        if (!edificio) {
+            return next({ statusCode: 404, message: 'Edificio no encontrado' });
+        }
+
+        res.json(edificio);
+    } catch (error) {
+        console.error('Error al obtener el edificio por nombre:', error);
+        next(error);
+    }
+};
+
 
 export const postEdificio = async (req, res, next) => {
     const { nombre } = req.body;
