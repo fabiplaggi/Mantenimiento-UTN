@@ -12,7 +12,6 @@ export class AuthService {
 
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
-  // Método para hacer login
   login(username: string, password: string): Observable<any> {
     return this.http.post(this.apiUrl, { username, password }).pipe(
       tap((response: any) => {
@@ -45,12 +44,11 @@ export class AuthService {
     return this.cookieService.get('token');
   }
 
-  // Método para obtener el rol del usuario
   getUserRol(): string {
     const token = this.getToken();
     if (token) {
       const payload = this.decodeToken(token);
-      return payload.rol; // Asegúrate de que el payload tenga el campo 'role'
+      return payload.rol;
     }
     return '';
   }
@@ -59,12 +57,11 @@ export class AuthService {
     const token = this.getToken();
     if (token) {
       const payload = this.decodeToken(token);
-      return payload.username; // Asegúrate de que el payload tenga el campo 'role'
+      return payload.username;
     }
     return '';
   }
 
-  // Método para decodificar el token
   private decodeToken(token: string): any {
     const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');

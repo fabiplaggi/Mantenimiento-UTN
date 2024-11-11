@@ -10,17 +10,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 import { LoginComponent } from './components/login/login.component';
-import { DashbardWorkerComponent } from './components/dashboard-worker/dashbard-worker.component';
-import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-admin.component';
-import { InicioAdminComponent } from './components/inicio-admin/inicio-admin.component';
 
 @NgModule({
     declarations: [
       AppComponent,
-      LoginComponent,
-      DashbardWorkerComponent,
-      DashboardAdminComponent,
-      InicioAdminComponent
+      LoginComponent
     ],
     imports: [
         BrowserModule,

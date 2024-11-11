@@ -20,23 +20,22 @@ export class LoginComponent {
       response => {
         console.log('Login exitoso', response);
 
-        // Guardar el token en la cookie ya se realiza en el AuthService
-
-        // Obtener el rol del usuario del token
         const userRol = this.authService.getUserRol();
         const userUsername = this.authService.getUserUsername();
 
         console.log('Rol del usuario:', userRol);
-        // Redirigir según el rol del usuario
+
         if (userRol === 'administrador') {
-          this.router.navigate(['/dashboardAdmin']);  // Redirige al admin al dashboard
+          this.router.navigate(['/admin']);
           this.toastr.info('Ingresaste con el rol de administrador.', 'Administrador', {
             timeOut: 3500,
           });
         } else if (userRol === 'trabajador') {
-          this.router.navigate(['/dashboardWorker']); // Redirige al operario al dashboard-op
+          this.router.navigate(['/trabajador']);
         } else {
-          this.errorMessage = 'Rol no reconocido.';
+          this.toastr.error('Rol no reconocido.', 'Error', {
+            timeOut: 3500,
+          });
         }
       },
       error => {
