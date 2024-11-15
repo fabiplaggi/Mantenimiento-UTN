@@ -8,8 +8,8 @@ import { verifyToken } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get("/:id_orden", verifyToken, listarTareasDeOrden);
-router.post("/", verifyToken, agregarTareaAOrden);
-router.delete("/:id", verifyToken, eliminarTareaDeOrden);
+router.get("/:id_orden", listarTareasDeOrden);
+router.post("/", agregarTareaAOrden);
+router.delete("/:id", eliminarTareaDeOrden);
 
 export default router;

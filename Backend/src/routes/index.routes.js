@@ -14,6 +14,39 @@
     import codigoRoutes from './codigo.routes.js'
 
     const setupRoutes = (app) => {
+        /**
+ * @swagger
+ * tags:
+ *   - name: Autenticación
+ *     description: Endpoints para la autenticación de usuarios
+ *   - name: Usuarios
+ *     description: Endpoints para la gestión de usuarios
+ *   - name: Activos
+ *     description: Endpoints para la gestión de activos
+ *   - name: Edificios
+ *     description: Endpoints para la gestión de edificios
+ *   - name: Pisos
+ *     description: Endpoints para la gestión de niveles/pisos
+ *   - name: Sectores
+ *     description: Endpoints para la gestión de sectores
+ *   - name: Tareas
+ *     description: Endpoints para la gestión de tareas
+ *   - name: Ubicaciones
+ *     description: Endpoints para la gestión de ubicaciones
+ *   - name: Activo-Tareas
+ *     description: Endpoints para asignar tareas a activos
+ *   - name: Activo-Detalles
+ *     description: Endpoints para gestionar los detalles de activos y sus códigos
+ *   - name: Ordenes-Trabajo
+ *     description: Endpoints para la gestión de órdenes de trabajo
+ *   - name: Orden-Trabajo-Tareas
+ *     description: Endpoints para la gestión de tareas dentro de una orden de trabajo
+ *   - name: Activo-Completo
+ *     description: Endpoints para obtener la información completa de un activo
+ *   - name: Códigos
+ *     description: Endpoints para la gestión de códigos de activos
+ */
+
         app.use('/api/auth', authRoutes)
         app.use('/api/usuarios', usuarioRoutes)
         app.use('/api/activos', activoRoutes)

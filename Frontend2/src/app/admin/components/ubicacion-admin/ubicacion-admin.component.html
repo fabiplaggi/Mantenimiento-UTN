@@ -1,0 +1,25 @@
+<div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>
+            Nombre
+            <!-- Campo de entrada para filtrar -->
+            <input
+              type="text"
+              placeholder="Filtrar por nombre"
+              (input)="filterUbicaciones()"
+            />
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ubicacion of filteredUbicaciones">
+          <td>{{ ubicacion.id_ubicacion }}</td>
+          <td>{{ ubicacion.nombre }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

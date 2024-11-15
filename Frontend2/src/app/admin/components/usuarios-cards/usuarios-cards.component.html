@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="conten">
+        <h1><i class="fa-brands fa-youtube"></i>Usuarios registrados en Mantenimiento UTN</h1>
+        <p>En esta página encontrarás todos los usuarios registrados en Mantenimiento UTN.</p>
+        <p>Podrás ver sus perfiles y editarlos o eliminarlos.</p>
+    </div>
+
+    <div class="grupo">
+        <h1 class="title">Usuarios registrados</h1>
+        <div class="contvideos">
+            <div class="card-container">
+                <div class="card" *ngFor="let usuarioCard of usauriosCards">
+                    <img src={{usuarioCard.rolImgUrl}}>
+                    <div class="card-content">
+                        <h3>{{usuarioCard.username}}</h3>
+                        <p><span class="user-character">👤</span>{{usuarioCard.rol}}</p>
+                        <a target="_blank" rel="noopener noreferrer" class="btn">Ver perfil</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,11 +11,11 @@ import { verifyToken, verifyRoles } from '../middlewares/auth.middleware.js'
 
 const router = Router()
 
-router.get('', verifyToken, verifyRoles(['administrador']), getUsuarios);
-router.get('/:id_usuario', verifyToken, verifyRoles(['administrador']), getUsuarioById);
-router.get('/nombre/:username', verifyToken, verifyRoles(['administrador']), getUsuarioByUsename)
-router.post('', verifyToken, verifyRoles(['administrador']), postUsuarios);
-router.put('/:id_usuario', verifyToken, verifyRoles(['administrador']), putUsuario);
-router.delete('/:id_usuario', verifyToken, verifyRoles(['administrador']), deleteUsuario);
+router.get('', getUsuarios);
+router.get('/:id_usuario', getUsuarioById);
+router.get('/nombre/:username', getUsuarioByUsename)
+router.post('', postUsuarios);
+router.put('/:id_usuario', putUsuario);
+router.delete('/:id_usuario', deleteUsuario);
 
 export default router

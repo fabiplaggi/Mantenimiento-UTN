@@ -11,11 +11,11 @@ import { verifyToken, verifyRoles } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get('', verifyToken, getSectores)
-router.get('/:id_sector', verifyToken, getSectorById);
-router.get('/nombre/:nombre', verifyToken, getSectorByName);
-router.post('', verifyToken, verifyRoles(['administrador']), postSector)
-router.put('/:id_sector', verifyToken, verifyRoles(['administrador']), putSector)
-router.delete('/:id_sector', verifyToken, verifyRoles(['administrador']), deleteSector)
+router.get('', getSectores)
+router.get('/:id_sector', getSectorById);
+router.get('/nombre/:nombre', getSectorByName);
+router.post('', postSector)
+router.put('/:id_sector', putSector)
+router.delete('/:id_sector', deleteSector)
 
 export default router

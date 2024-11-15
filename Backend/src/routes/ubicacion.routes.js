@@ -11,20 +11,16 @@ import { verifyToken, verifyRoles } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get("", verifyToken, getUbicaciones);
-router.get("/:id_ubicacion", verifyToken, getUbicacionById);
-router.get('/nombre/:nombre', verifyToken, getUbicacionByName);
-router.post("", verifyToken, verifyRoles(["administrador"]), postUbicacion);
+router.get("", getUbicaciones);
+router.get("/:id_ubicacion", getUbicacionById);
+router.get('/nombre/:nombre', getUbicacionByName);
+router.post("", postUbicacion);
 router.put(
   "/:id_ubicacion",
-  verifyToken,
-  verifyRoles(["administrador"]),
   putUbicacion
 );
 router.delete(
   "/:id_ubicacion",
-  verifyToken,
-  verifyRoles(["administrador"]),
   deleteUbicacion
 );
 

@@ -1,0 +1,20 @@
+<mat-card class="title-container">
+    <mat-card-content class="card-title">Listado de Ubicaciones</mat-card-content>
+</mat-card>
+  
+<div class="table-container">
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ubicacion of ubicaciones">
+        <td>{{ ubicacion.id_ubicacion }}</td>
+        <td>{{ ubicacion.nombre }}</td>
+    </tr>
+    </tbody>
+</table>
+</div>

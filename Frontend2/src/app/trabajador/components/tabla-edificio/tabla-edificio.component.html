@@ -1,0 +1,21 @@
+<mat-card class="title-container">
+    <mat-card-content class="card-title">Listado de Edificios</mat-card-content>
+</mat-card>
+  
+<div class="table-container">
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let edificio of edificios">
+        <td>{{ edificio.id_edificio }}</td>
+        <td>{{ edificio.nombre }}</td>
+    </tr>
+    </tbody>
+</table>
+</div>
+  

@@ -1,0 +1,47 @@
+<!-- en `orden-trabajo-form.component.html` -->
+<form [formGroup]="ordenForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="codigo">Código</label>
+      <input
+        id="codigo"
+        formControlName="codigo"
+        (blur)="onCodigoChange()"
+        placeholder="Ingresa el código del activo"
+      />
+    </div>
+  
+    <div>
+      <label for="edificio">Edificio</label>
+      <input id="edificio" formControlName="edificio" />
+    </div>
+  
+    <div>
+      <label for="piso_nivel">Piso/Nivel</label>
+      <input id="piso_nivel" formControlName="piso_nivel"  />
+    </div>
+  
+    <div>
+      <label for="sector">Sector</label>
+      <input id="sector" formControlName="sector"  />
+    </div>
+  
+    <div>
+      <label for="activo">Activo</label>
+      <input id="activo" formControlName="activo"  />
+    </div>
+  
+    <div>
+      <label for="ubicacion">Ubicación</label>
+      <input id="ubicacion" formControlName="ubicacion"  />
+    </div>
+  
+    <div>
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" formControlName="descripcion"></textarea>
+    </div>
+  
+    <!-- Otros campos de la orden de trabajo -->
+  
+    <button type="submit" [disabled]="ordenForm.invalid">Crear Orden de Trabajo</button>
+  </form>
+  
